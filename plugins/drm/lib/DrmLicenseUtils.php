@@ -65,9 +65,18 @@ class DrmLicenseUtils {
 	public static function createCustomData($entryId, KalturaFlavorAssetArray $flavorAssets, $signingKey)
 	{
 		$flavorIds = "";
+		$first = true;
 		foreach ($flavorAssets as $flavor)
 		{
-			$flavorIds .= $flavor->id.",";
+			if ($first)
+			{
+				$first = false;
+			}
+			else
+			{
+				$flavorIds .=",";
+			}
+			$flavorIds .= $flavor->id;
 		}
 
         $innerData = array();
