@@ -64,13 +64,10 @@ class DrmLicenseUtils {
 
 	public static function createCustomData($entryId, KalturaFlavorAssetArray $flavorAssets, $signingKey)
 	{
-		$flavorParamIds = "";
+		$flavorIds = "";
 		foreach ($flavorAssets as $flavor)
 		{
-			/**
-			 * @var KalturaFlavorAsset $flavor
-			 */
-			$flavorParamIds .= $flavor->id.",";
+			$flavorIds .= $flavor->id.",";
 		}
 
         $innerData = array();
@@ -78,7 +75,7 @@ class DrmLicenseUtils {
         $innerData["user_token"] = kCurrentContext::$ks;
         $innerData["account_id"] = kCurrentContext::getCurrentPartnerId();
         $innerData["content_id"] = $entryId;
-        $innerData["files"] = $flavorParamIds;
+        $innerData["files"] = $flavorIds;
 
 		$customData = array();
 		foreach ($flavorAssets as $flavor)
