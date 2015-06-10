@@ -67,7 +67,10 @@ class DrmLicenseUtils {
 		$flavorParamIds = "";
 		foreach ($flavorAssets as $flavor)
 		{
-			$flavorParamIds .= $flavor->flavorParamsId.",";
+			/**
+			 * @var KalturaFlavorAsset $flavor
+			 */
+			$flavorParamIds .= $flavor->id.",";
 		}
 
         $innerData = array();
